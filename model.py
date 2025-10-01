@@ -247,13 +247,9 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
     return idx
 
 tokenizer = tiktoken.get_encoding("gpt2")
-
-
-
-
 model = GPTModel(GPT_CONFIG_124M)
-
 model.eval() 
+
 def text_to_token_ids(text, tokenizer):
     encoded = tokenizer.encode(text, allowed_special={'<|endoftext|>'})
     encoded_tensor = torch.tensor(encoded).unsqueeze(0) # add batch dimension
@@ -267,12 +263,12 @@ start_context = "Every effort moves you"
 
 
 
-token_ids = generate_text_simple(
-    model=model,
-    idx=text_to_token_ids(start_context, tokenizer),
-    max_new_tokens=10,
-    context_size=GPT_CONFIG_124M["context_length"]
-)
+# token_ids = generate_text_simple(
+#     model=model,
+#     idx=text_to_token_ids(start_context, tokenizer),
+#     max_new_tokens=10,
+#     context_size=GPT_CONFIG_124M["context_length"]
+# )
 
 
 import os
